@@ -2,7 +2,7 @@ import { StyleProp, Text, TextProps, TextStyle } from "react-native";
 import { useTheme } from "styled-components/native";
 import { verticalScale } from "@/modules/app/utils/functions";
 
-type Variant = "title";
+type Variant = "title" | "body" | "body2";
 
 interface TypographyProps extends TextProps {
   children: React.ReactNode;
@@ -22,6 +22,18 @@ export const Typography = ({
         return {
           fontFamily: theme.fonts.semiBold600,
           fontSize: verticalScale(18),
+          color: theme.colors.black,
+        };
+      case "body":
+        return {
+          fontFamily: theme.fonts.regular400,
+          fontSize: verticalScale(14),
+          color: theme.colors.black,
+        };
+      case "body2":
+        return {
+          fontFamily: theme.fonts.regular400,
+          fontSize: verticalScale(12),
           color: theme.colors.black,
         };
 

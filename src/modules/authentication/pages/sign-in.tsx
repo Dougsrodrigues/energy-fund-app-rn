@@ -1,8 +1,7 @@
-import { Input, Typography } from "@/modules/app/components";
+import { Button, Input, Typography } from "@/modules/app/components";
 import { InputContent } from "@/modules/app/components/input/input-content";
 import { horizontalScale, verticalScale } from "@/modules/app/utils/functions";
 import { Eye, EyeClosed } from "phosphor-react-native";
-import { Keyboard, TouchableWithoutFeedback } from "react-native";
 import { styled, useTheme } from "styled-components/native";
 import { useSignIn } from "../hooks/use-sign-in";
 
@@ -13,51 +12,70 @@ export const SignIn = () => {
   const eyeIcon = isPasswordShown ? Eye : EyeClosed;
   return (
     <Container>
-      <SafeAreaViewStyled>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <Content>
-            <Typography variant="title">Login</Typography>
+      <Typography variant="title">Login</Typography>
 
-            <InputRootWithMarginBottom>
-              <Input.Label label="E-mail" />
-              <InputContent>
-                <Input.Field />
-              </InputContent>
-            </InputRootWithMarginBottom>
+      <InputRootWithMarginBottom marginBottom={20}>
+        <Input.Label label="E-mail" />
+        <InputContent>
+          <Input.Field
+            keyboardType="email-address"
+            autoCapitalize="none"
+            placeholder="Enter with your email address"
+          />
+        </InputContent>
+      </InputRootWithMarginBottom>
 
-            <Input.Root>
-              <Input.Label label="Senha" />
-              <InputContent>
-                <Input.Field secureTextEntry={!isPasswordShown} />
-                <Input.Icon
-                  icon={eyeIcon}
-                  size={20}
-                  color={theme.colors.grey700}
-                  onPress={handleSeePassword}
-                />
-              </InputContent>
-            </Input.Root>
-          </Content>
-        </TouchableWithoutFeedback>
-      </SafeAreaViewStyled>
+      <InputRootWithMarginBottom marginBottom={40}>
+        <Input.Label label="Password" />
+        <InputContent>
+          <Input.Field
+            secureTextEntry={!isPasswordShown}
+            placeholder="Minimum 8 characters"
+          />
+          <Input.Icon
+            icon={eyeIcon}
+            size={20}
+            color={theme.colors.grey700}
+            onPress={handleSeePassword}
+          />
+        </InputContent>
+      </InputRootWithMarginBottom>
+
+      <Button variant="action1">Login</Button>
+
+      <PressableStyled onPress={() => console.log("TESTE")}>
+        <TypographyStyled variant="body2">
+          Don’t have an account?{" "}
+          <TypographyUnderline variant="body2">Sign up</TypographyUnderline>{" "}
+          here
+        </TypographyStyled>
+      </PressableStyled>
     </Container>
   );
 };
 
-const SafeAreaViewStyled = styled.KeyboardAvoidingView`
-  flex: 1;
-`;
-const Container = styled.KeyboardAvoidingView`
-  flex: 1;
+const Container = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: verticalScale(20),
+    paddingHorizontal: horizontalScale(20),
+  },
+})``;
+
+const InputRootWithMarginBottom = styled(Input.Root)<{ marginBottom: number }>`
+  margin-bottom: ${({ marginBottom }) => verticalScale(marginBottom)}px;
 `;
 
-const Content = styled.View`
-  flex: 1;
-  align-items: center;
-
-  padding: ${verticalScale(16)}px ${horizontalScale(16)}px;
+const PressableStyled = styled.Pressable`
+  margin-top: ${verticalScale(20)}px;
 `;
 
-const InputRootWithMarginBottom = styled(Input.Root)`
-  margin-bottom: ${verticalScale(20)}px;
+const TypographyStyled = styled(Typography).attrs({
+  variant: "body2",
+})`
+  color: ${({ theme }) => theme.colors.grey700};
+`;
+const TypographyUnderline = styled(TypographyStyled)`
+  text-decoration: underline;
 `;
