@@ -1,6 +1,6 @@
 import { StyleProp, Text, TextProps, TextStyle } from "react-native";
 import { useTheme } from "styled-components/native";
-import { verticalScale } from "../utils/functions";
+import { verticalScale } from "@/modules/app/utils/functions";
 
 type Variant = "title";
 
