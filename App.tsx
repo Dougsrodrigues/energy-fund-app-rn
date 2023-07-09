@@ -8,6 +8,8 @@ import {
   Sora_600SemiBold,
   Sora_400Regular,
 } from "@expo-google-fonts/sora";
+import { Providers } from "@/modules/app/providers";
+import { styled } from "styled-components/native";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -20,19 +22,13 @@ export default function App() {
     return <Text>Loading...</Text>;
   }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <Providers>
+      <TextS>Open up App.js to start working on your app!</TextS>
       <StatusBar style="auto" />
-    </View>
+    </Providers>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "red",
-    alignItems: "center",
-    justifyContent: "center",
-    width: horizontalScale(120),
-  },
-});
+const TextS = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.regular400};
+`;
