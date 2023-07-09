@@ -3,7 +3,7 @@ export default {
     black: "#000000",
     white: "#FFF",
 
-    grey100: "##F4F4F4",
+    grey100: "#F4F4F4",
     grey300: "#E6E6E6",
     grey500: "#CFCFCF",
     grey700: "#A0A0A0",
