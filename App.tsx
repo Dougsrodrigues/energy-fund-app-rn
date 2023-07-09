@@ -1,7 +1,7 @@
 import React from "react";
+import { horizontalScale } from "app/utils/functions";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import { horizontalScale } from "./src/app/utils/functions";
 
 export default function App() {
   return (
