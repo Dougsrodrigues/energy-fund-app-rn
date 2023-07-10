@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@babel/preset-env": "^7.22.7",
     "@babel/preset-typescript": "^7.22.5",
     "@testing-library/react-native": "^12.1.2",
     "@types/jest": "^29.5.2",
