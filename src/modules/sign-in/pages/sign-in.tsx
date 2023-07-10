@@ -7,7 +7,8 @@ import { Controller } from "react-hook-form";
 
 export const SignIn = () => {
   const theme = useTheme();
-  const { handleGoToSignUp, control, errors, handleSignIn } = useSignIn();
+  const { handleGoToSignUp, control, errors, handleSignIn, isLoading } =
+    useSignIn();
 
   const { handleSeePassword, isPasswordShown, eyeIcon } = useSeePasswordInput();
 
@@ -21,8 +22,12 @@ export const SignIn = () => {
         render={({ field: { onChange } }) => (
           <InputRootWithMarginBottom marginBottom={20}>
             <Input.Label label="E-mail" />
-            <Input.Content error={errors?.email && errors?.email?.message}>
+            <Input.Content
+              testID="input_content_email"
+              error={errors?.email && errors?.email?.message}
+            >
               <Input.Field
+                testID="input_field_email"
                 onChangeText={onChange}
                 keyboardType="email-address"
                 autoCapitalize="none"
@@ -40,9 +45,11 @@ export const SignIn = () => {
           <InputRootWithMarginBottom marginBottom={40}>
             <Input.Label label="Password" />
             <Input.Content
+              testID="input_content_password"
               error={errors?.password && errors?.password?.message}
             >
               <Input.Field
+                testID="input_password_field"
                 onChangeText={onChange}
                 secureTextEntry={!isPasswordShown}
                 placeholder="Minimum 8 characters"
@@ -58,11 +65,16 @@ export const SignIn = () => {
         )}
       />
 
-      <Button onPress={handleSignIn} variant="action1">
+      <Button
+        isLoading={isLoading}
+        testID="submit_button"
+        onPress={handleSignIn}
+        variant="action1"
+      >
         Login
       </Button>
 
-      <PressableStyled onPress={handleGoToSignUp}>
+      <PressableStyled onPress={() => handleGoToSignUp()}>
         <TypographyStyled variant="body2">
           Don’t have an account?{" "}
           <TypographyUnderline variant="body2">Sign up</TypographyUnderline>{" "}

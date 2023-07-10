@@ -5,12 +5,19 @@ import {
   moderateScale,
   verticalScale,
 } from "../utils/functions";
-import { PressableProps, StyleProp, TextStyle, ViewStyle } from "react-native";
+import {
+  ActivityIndicator,
+  PressableProps,
+  StyleProp,
+  TextStyle,
+  ViewStyle,
+} from "react-native";
 
 type Variant = "action1";
 interface ButtonProps extends PressableProps {
   children: React.ReactNode;
   variant: Variant;
+  isLoading?: boolean;
 }
 
 interface MakeStylesButtonReturn {
@@ -18,7 +25,12 @@ interface MakeStylesButtonReturn {
   stylesText: StyleProp<TextStyle>;
 }
 
-export const Button = ({ children, variant, ...rest }: ButtonProps) => {
+export const Button = ({
+  children,
+  variant,
+  isLoading,
+  ...rest
+}: ButtonProps) => {
   const theme = useTheme();
 
   const makeStylesButton = (variant: Variant): MakeStylesButtonReturn => {
@@ -40,7 +52,11 @@ export const Button = ({ children, variant, ...rest }: ButtonProps) => {
 
   return (
     <Container style={stylesButton} {...rest}>
-      <Typography style={stylesText}>{children}</Typography>
+      {isLoading ? (
+        <ActivityIndicator testID="snipper_button" />
+      ) : (
+        <Typography style={stylesText}>{children}</Typography>
+      )}
     </Container>
   );
 };

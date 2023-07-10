@@ -10,15 +10,21 @@ import { Typography } from "../typography";
 interface InputProps extends ViewProps {
   error?: string;
   children: React.ReactNode;
+  testID?: string;
 }
 
-export const InputContent = ({ children, error, ...rest }: InputProps) => {
+export const InputContent = ({
+  children,
+  error,
+  testID,
+  ...rest
+}: InputProps) => {
   return (
     <>
-      <Container hasError={!!error} {...rest}>
+      <Container testID={testID} hasError={!!error} {...rest}>
         {children}
       </Container>
-      {!!error && <TextError>{error}</TextError>}
+      {!!error && <TextError testID={testID + "_error"}>{error}</TextError>}
     </>
   );
 };
@@ -32,7 +38,7 @@ const Container = styled.View<{ hasError: boolean }>`
   border-radius: ${moderateScale(6)}px;
   padding: ${verticalScale(15)}px ${horizontalScale(10)}px;
 
-  ${({ hasError, theme }) =>
+  ${({ hasError }) =>
     hasError &&
     css`
       border: 1px solid red;

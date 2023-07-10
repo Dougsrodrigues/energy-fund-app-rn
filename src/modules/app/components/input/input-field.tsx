@@ -2,9 +2,7 @@ import { TextInputProps } from "react-native";
 import { styled } from "styled-components/native";
 import { verticalScale } from "@/modules/app/utils/functions";
 
-interface InputProps extends TextInputProps {
-  label?: string;
-}
+interface InputProps extends TextInputProps {}
 
 export const InputField = ({ ...rest }: InputProps) => {
   return <InputStyled {...rest}></InputStyled>;
