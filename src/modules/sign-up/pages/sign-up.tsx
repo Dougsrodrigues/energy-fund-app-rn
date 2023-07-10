@@ -1,9 +1,9 @@
 import { Button, Input, Typography } from "@/modules/app/components";
 import { horizontalScale, verticalScale } from "@/modules/app/utils/functions";
 import { styled, useTheme } from "styled-components/native";
-import { useSeePasswordInput } from "../hooks";
 import { KeyboardAvoidingView, Platform } from "react-native";
 import { Checkbox } from "@/modules/app/components/checkbox";
+import { useSeePasswordInput } from "@/modules/app/hooks";
 
 export const SignUp = () => {
   const { handleSeePassword, isPasswordShown, eyeIcon } = useSeePasswordInput();
@@ -124,5 +124,5 @@ const TypographyUnderline = styled(Typography).attrs({
 `;
 
 const CheckboxStyled = styled(Checkbox.Root)`
-  margin-bottom: ${verticalScale(32)};
+  margin-bottom: ${verticalScale(32)}px;
 `;

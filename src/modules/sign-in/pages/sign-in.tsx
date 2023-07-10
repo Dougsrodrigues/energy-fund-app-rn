@@ -2,7 +2,7 @@ import { Button, Input, Typography } from "@/modules/app/components";
 import { horizontalScale, verticalScale } from "@/modules/app/utils/functions";
 import { styled, useTheme } from "styled-components/native";
 import { useSignIn } from "../hooks/use-sign-in";
-import { useSeePasswordInput } from "../hooks";
+import { useSeePasswordInput } from "@/modules/app/hooks";
 
 export const SignIn = () => {
   const theme = useTheme();

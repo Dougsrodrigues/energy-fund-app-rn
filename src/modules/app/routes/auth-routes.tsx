@@ -1,4 +1,5 @@
-import { SignIn, SignUp } from "@/modules/authentication/pages";
+import { SignUp } from "@/modules/sign-up/pages";
+import { SignIn } from "@/modules/sign-in/pages";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Platform } from "react-native";
 import { useTheme } from "styled-components/native";
