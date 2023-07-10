@@ -3,7 +3,7 @@ import { horizontalScale, verticalScale } from "@/modules/app/utils/functions";
 import { styled, useTheme } from "styled-components/native";
 import { useSeePasswordInput } from "../hooks";
 import { KeyboardAvoidingView, Platform } from "react-native";
-import { Checkbox } from "../components";
+import { Checkbox } from "@/modules/app/components/checkbox";
 
 export const SignUp = () => {
   const { handleSeePassword, isPasswordShown, eyeIcon } = useSeePasswordInput();
@@ -60,12 +60,16 @@ export const SignUp = () => {
             </Input.Content>
           </InputRootWithMarginBottom>
 
-          <Checkbox />
-          <TypographyStyled>
-            I am over 18 years of age and I have read and agree to the{" "}
-            <Typography variant="body2">Terms of Service</Typography> and{" "}
-            <Typography variant="body2">Privacy policy.</Typography>
-          </TypographyStyled>
+          <CheckboxStyled>
+            <Checkbox.Field />
+            <Checkbox.Text>
+              <TypographyStyled>
+                I am over 18 years of age and I have read and agree to the{" "}
+                <Typography variant="body2">Terms of Service</Typography> and{" "}
+                <Typography variant="body2">Privacy policy.</Typography>
+              </TypographyStyled>
+            </Checkbox.Text>
+          </CheckboxStyled>
 
           <Button variant="action1">Create account</Button>
 
@@ -117,4 +121,8 @@ const TypographyUnderline = styled(Typography).attrs({
   variant: "body2",
 })`
   text-decoration: underline;
+`;
+
+const CheckboxStyled = styled(Checkbox.Root)`
+  margin-bottom: ${verticalScale(32)};
 `;
