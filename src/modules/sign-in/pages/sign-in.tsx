@@ -3,10 +3,11 @@ import { horizontalScale, verticalScale } from "@/modules/app/utils/functions";
 import { styled, useTheme } from "styled-components/native";
 import { useSignIn } from "../hooks/use-sign-in";
 import { useSeePasswordInput } from "@/modules/app/hooks";
+import { Controller } from "react-hook-form";
 
 export const SignIn = () => {
   const theme = useTheme();
-  const { handleGoToSignUp } = useSignIn();
+  const { handleGoToSignUp, control, errors, handleSignIn } = useSignIn();
 
   const { handleSeePassword, isPasswordShown, eyeIcon } = useSeePasswordInput();
 
@@ -14,34 +15,52 @@ export const SignIn = () => {
     <Container>
       <Typography variant="title">Login</Typography>
 
-      <InputRootWithMarginBottom marginBottom={20}>
-        <Input.Label label="E-mail" />
-        <Input.Content>
-          <Input.Field
-            keyboardType="email-address"
-            autoCapitalize="none"
-            placeholder="Enter with your email address"
-          />
-        </Input.Content>
-      </InputRootWithMarginBottom>
+      <Controller
+        name="email"
+        control={control}
+        render={({ field: { onChange } }) => (
+          <InputRootWithMarginBottom marginBottom={20}>
+            <Input.Label label="E-mail" />
+            <Input.Content error={errors?.email && errors?.email?.message}>
+              <Input.Field
+                onChangeText={onChange}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                placeholder="Enter with your email address"
+              />
+            </Input.Content>
+          </InputRootWithMarginBottom>
+        )}
+      />
 
-      <InputRootWithMarginBottom marginBottom={40}>
-        <Input.Label label="Password" />
-        <Input.Content>
-          <Input.Field
-            secureTextEntry={!isPasswordShown}
-            placeholder="Minimum 8 characters"
-          />
-          <Input.Icon
-            icon={eyeIcon}
-            size={20}
-            color={theme.colors.grey700}
-            onPress={handleSeePassword}
-          />
-        </Input.Content>
-      </InputRootWithMarginBottom>
+      <Controller
+        name="password"
+        control={control}
+        render={({ field: { onChange } }) => (
+          <InputRootWithMarginBottom marginBottom={40}>
+            <Input.Label label="Password" />
+            <Input.Content
+              error={errors?.password && errors?.password?.message}
+            >
+              <Input.Field
+                onChangeText={onChange}
+                secureTextEntry={!isPasswordShown}
+                placeholder="Minimum 8 characters"
+              />
+              <Input.Icon
+                icon={eyeIcon}
+                size={20}
+                color={theme.colors.grey700}
+                onPress={handleSeePassword}
+              />
+            </Input.Content>
+          </InputRootWithMarginBottom>
+        )}
+      />
 
-      <Button variant="action1">Login</Button>
+      <Button onPress={handleSignIn} variant="action1">
+        Login
+      </Button>
 
       <PressableStyled onPress={handleGoToSignUp}>
         <TypographyStyled variant="body2">
