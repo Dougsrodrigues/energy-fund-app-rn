@@ -1,33 +1,33 @@
 import { Button, Input, Typography } from "@/modules/app/components";
-import { InputContent } from "@/modules/app/components/input/input-content";
 import { horizontalScale, verticalScale } from "@/modules/app/utils/functions";
-import { Eye, EyeClosed } from "phosphor-react-native";
 import { styled, useTheme } from "styled-components/native";
 import { useSignIn } from "../hooks/use-sign-in";
+import { useSeePasswordInput } from "../hooks";
 
 export const SignIn = () => {
   const theme = useTheme();
-  const { isPasswordShown, handleSeePassword } = useSignIn();
+  const { handleGoToSignUp } = useSignIn();
 
-  const eyeIcon = isPasswordShown ? Eye : EyeClosed;
+  const { handleSeePassword, isPasswordShown, eyeIcon } = useSeePasswordInput();
+
   return (
     <Container>
       <Typography variant="title">Login</Typography>
 
       <InputRootWithMarginBottom marginBottom={20}>
         <Input.Label label="E-mail" />
-        <InputContent>
+        <Input.Content>
           <Input.Field
             keyboardType="email-address"
             autoCapitalize="none"
             placeholder="Enter with your email address"
           />
-        </InputContent>
+        </Input.Content>
       </InputRootWithMarginBottom>
 
       <InputRootWithMarginBottom marginBottom={40}>
         <Input.Label label="Password" />
-        <InputContent>
+        <Input.Content>
           <Input.Field
             secureTextEntry={!isPasswordShown}
             placeholder="Minimum 8 characters"
@@ -38,12 +38,12 @@ export const SignIn = () => {
             color={theme.colors.grey700}
             onPress={handleSeePassword}
           />
-        </InputContent>
+        </Input.Content>
       </InputRootWithMarginBottom>
 
       <Button variant="action1">Login</Button>
 
-      <PressableStyled onPress={() => console.log("TESTE")}>
+      <PressableStyled onPress={handleGoToSignUp}>
         <TypographyStyled variant="body2">
           Don’t have an account?{" "}
           <TypographyUnderline variant="body2">Sign up</TypographyUnderline>{" "}

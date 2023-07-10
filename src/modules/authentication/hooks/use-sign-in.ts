@@ -1,11 +1,12 @@
-import { useCallback, useState } from "react";
+import { useNavigationAuth } from "@/modules/app/hooks";
+import { useCallback } from "react";
 
 export const useSignIn = () => {
-  const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const navigation = useNavigationAuth();
 
-  const handleSeePassword = useCallback(() => {
-    setIsPasswordShown((prevState) => !prevState);
+  const handleGoToSignUp = useCallback(() => {
+    navigation.navigate("SignUp");
   }, []);
 
-  return { isPasswordShown, handleSeePassword };
+  return { handleGoToSignUp };
 };
