@@ -1,1 +1,1 @@
-export * from "./sign-in-selector";
+export * from "./auth-selector";
