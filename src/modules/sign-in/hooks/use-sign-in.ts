@@ -1,7 +1,8 @@
-import { useNavigation } from "@/modules/app/hooks";
+import { useAppDispatch, useNavigation } from "@/modules/app/hooks";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SignInDTO, SignInFormFields, signInSchema } from "../utils";
+import { authActions } from "../store";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -16,12 +17,12 @@ export const useSignIn = () => {
   } = useForm<SignInFormFields>({
     resolver: signInSchema,
   });
-
+  const dispatch = useAppDispatch();
   const handleSignIn = async (data: SignInDTO) => {
     try {
       setIsLoading(true);
       await sleep(3000);
-      console.log("Logic executed", data);
+      dispatch(authActions.saveUserSignInData(true));
       navigation.navigate("Home");
     } catch (error) {
     } finally {

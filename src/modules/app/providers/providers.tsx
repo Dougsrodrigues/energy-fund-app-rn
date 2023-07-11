@@ -1,5 +1,4 @@
-import { NavigatorProvider } from "./navigator-provider";
-import { StyledComponentsProvider } from "./styled-components-provider";
+import { NavigatorProvider, ReduxProvider, StyledComponentsProvider } from ".";
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -7,7 +6,9 @@ interface ProvidersProps {
 export const Providers = ({ children }: ProvidersProps) => {
   return (
     <StyledComponentsProvider>
-      <NavigatorProvider>{children}</NavigatorProvider>
+      <ReduxProvider>
+        <NavigatorProvider>{children}</NavigatorProvider>
+      </ReduxProvider>
     </StyledComponentsProvider>
   );
 };
