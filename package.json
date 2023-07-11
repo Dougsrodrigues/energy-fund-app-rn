@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^3.1.1",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/stack": "^6.3.17",
+    "@reduxjs/toolkit": "^1.9.5",
     "expo": "~48.0.18",
     "expo-status-bar": "~1.4.4",
     "phosphor-react-native": "^1.1.2",
@@ -25,6 +26,7 @@
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "~3.20.0",
     "react-native-svg": "13.4.0",
+    "react-redux": "^8.1.1",
     "styled-components": "^6.0.3",
     "yup": "^1.2.0"
   },
@@ -35,6 +37,7 @@
     "@types/jest": "^29.5.2",
     "@types/react": "~18.0.27",
     "@types/react-native": "^0.72.2",
+    "@types/react-redux": "^7.1.25",
     "jest": "^29.6.1",
     "react-test-renderer": "^18.2.0",
     "typescript": "^4.9.4"
