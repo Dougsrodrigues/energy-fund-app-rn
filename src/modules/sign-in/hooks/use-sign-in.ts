@@ -1,4 +1,4 @@
-import { useNavigationAuth } from "@/modules/app/hooks";
+import { useNavigation } from "@/modules/app/hooks";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SignInDTO, SignInFormFields, signInSchema } from "../utils";
@@ -6,7 +6,7 @@ import { SignInDTO, SignInFormFields, signInSchema } from "../utils";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const useSignIn = () => {
-  const navigation = useNavigationAuth();
+  const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -18,10 +18,15 @@ export const useSignIn = () => {
   });
 
   const handleSignIn = async (data: SignInDTO) => {
-    setIsLoading(true);
-    console.log(data);
-    await sleep(3000);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      await sleep(3000);
+      console.log("Logic executed", data);
+      navigation.navigate("Home");
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleGoToSignUp = useCallback(() => {
